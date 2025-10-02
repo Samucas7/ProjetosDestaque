@@ -6,4 +6,4 @@ Quatro em Linha --> C++
 
 FlappyBird --> Java
 
-Sapo das Streets --> HTML / CSS / JAVASCRIPT / NODEJS / SQL
+Sapo das Streets --> HTML / CSS / JavaScript / NodeJS / SQL
