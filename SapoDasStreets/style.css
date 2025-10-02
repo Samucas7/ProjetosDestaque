@@ -1,0 +1,381 @@
+/* Fundo da página com a imagem da quinta */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #cffffb;
+  background-size: cover;
+  color: #204020;
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#game-logo {
+  width: 70%;
+  height: 100%;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Tela de entrada com fundo transparente para mostrar a imagem */
+#entry-screen {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 20px;
+  color: white;
+  background: transparent;
+  max-width: 350px; /* ajustado para dar espaço pra scoreboard */
+  margin: auto;
+  height: 100vh;
+  box-sizing: border-box;
+  padding-right: 30px; /* espaço pra scoreboard do lado direito */
+}
+
+/* Container da nickname fixa no canto esquerdo superior */
+#title-container {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  height: calc(100vh - 40vh - 30px); /* 40vh para deixar espaço pro nickname + 20px top + 20px gap */
+  width: calc(100vw - 32vw - 60px); /* largura da tela - scoreboard - espaços laterais */
+  background: #66bbff;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 14px;
+  border: 5px solid #1f415c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  overflow-y: auto;
+  color: #fff;
+  box-shadow: 0 0 15px #1f415c;
+}
+
+#title-container h1 {
+  margin: 0;
+  font-size: 2.5rem;
+  color: #1f415c;
+  text-shadow: none;
+  text-align: center;
+}
+
+#nickname-container {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  height: calc(100vh - 60vh - 30px); 
+  width: calc(100vw - 32vw - 60px); /* mesma largura do de cima */
+  background: #88cc88;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 14px;
+  border: 5px solid #204020;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  overflow-y: auto;
+  color: #fff;
+  box-shadow: 0 0 15px #204020;
+}
+
+
+#nickname-container input {
+  width: 80%;
+  padding: 10px;
+  font-size: 1.2rem;
+  border-radius: 10px;
+  border: none;
+  box-shadow: 0 0 8px #0006;
+}
+
+#nickname-container button {
+  width: 30%;
+  margin: 0 auto;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background-color: #407f40;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 8px #204020;
+  text-align: center;
+  align-self: center;
+  display: block;
+}
+
+#nickname-container button:disabled {
+  background-color: #626b62;
+  box-shadow: 0 0 8px #204020 !important;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* Subtítulo Scoreboard abaixo do input */
+#entry-screen > h2 {
+  margin: 20px 0 10px 0;
+  font-weight: normal;
+  font-size: 1.5rem;
+  text-shadow: 1px 1px 4px #000;
+}
+
+/* Container da scoreboard fixa no canto direito */
+#scoreboard-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  height: calc(100vh - 10vh - 50px); /* altura da viewport menos margem superior + inferior */
+  width: 32vw;
+  background: #555;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 14px;
+  border: 5px solid #222;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 15px;
+  overflow-y: auto;
+  color: #fff;
+  box-shadow: 0 0 15px #222 !important;
+}
+
+
+/* Título dentro da scoreboard */
+#scoreboard-container h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #222;
+  text-align: center;
+  width: 100%;
+}
+
+/* Lista do scoreboard, sem estilo de lista e sem pontos */
+ul#scoreboard {
+  list-style-type: none !important;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  text-align: center;
+}
+
+/* Cada item do scoreboard - linha flex com quadrados */
+ul#scoreboard li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  margin: 5px 0;
+  padding: 6px 8px;
+  border-radius: 6px;
+  color: #000;
+  font-weight: bold;
+  font-family: monospace;
+}
+
+/* Quadrados para posição, score e nickname */
+.score-position,
+.score-value,
+.score-nickname {
+  flex: 1;
+  min-width: 40px;
+  height: 28px;
+  background-color: #a8d08d; /* verde claro */
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #1b3a1b; /* verde escuro */
+  margin: 0 4px;
+  user-select: none;
+  font-size: 1rem;
+}
+
+/* Remove margens extras do primeiro e último quadrado */
+.score-position {
+  margin-left: 0;
+}
+
+.score-nickname {
+  margin-right: 0;
+}
+
+/* Canvas do jogo */
+#game-canvas {
+  position: fixed;
+  left: 0px;
+  height: calc(100vh - 40px); /* altura da viewport menos margem superior + inferior */
+  width: calc(100vw - 32vw - 60px); /* mesma largura do de cima */
+  background: #90ca90;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 5px solid #fff;
+  display: none;
+  margin: 20px;
+  box-shadow: 0 0 15px #fff;
+  z-index: 10;
+}
+
+/* Score fixa no topo */
+#score-display {
+  position: fixed;
+  top: 20px;
+  left: 85px;
+  border-bottom-right-radius: 12px;
+  transform: translateX(-50%);
+  font-size: 22px;
+  font-weight: bold;
+  color: #222;
+  background: #fff;
+  padding: 8px 20px;
+  display: none;
+  z-index: 1000;
+  align-items: center;
+}
+
+/* Tela de game over */
+#game-over-screen {
+  position: fixed;
+  left: 0px;
+  height: calc(100vh - 40px); /* altura da viewport menos margem superior + inferior */
+  width: calc(100vw - 32vw - 60px); /* mesma largura do de cima */
+  background: #90ca90;
+  box-sizing: border-box;
+  border-radius: 10px;
+  border: 5px solid #204020;
+  display: none;
+  margin: 20px;
+  box-shadow: 0 0 15px #204020;
+  z-index: 10;
+  padding: 20px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  overflow-y: auto;
+}
+
+#game-over-screen > h2 {
+  font-size: 6rem;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+}
+
+#game-over-screen > p {
+  font-size: 3.4rem;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+}
+
+#game-over-screen > button {
+  width: 30%;
+  margin: 0 auto;
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background-color: #407f40;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 8px #204020;
+  text-align: center;
+  align-self: center;
+  display: block;
+}
+
+/* Container do volume */
+.volume-container {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  height: calc(100vh - 90vh - 50px); /* altura da viewport menos margem superior + inferior */
+  width: 32vw;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  overflow-y: auto;
+  padding: 20px;
+  box-sizing: border-box;
+  border-radius: 14px;
+  border: 5px solid #00000000;
+}
+
+/* Slider de volume */
+.volume-container input[type="range"] {
+  -webkit-appearance: none; /* Remove aparência padrão no Chrome/Safari */
+  -moz-appearance: none; /* Remove aparência padrão no Firefox */
+  appearance: none; /* Remove aparência padrão nos browsers que suportam */
+  border: none; /* Remove qualquer borda extra */
+  outline: none; /* Remove foco padrão */
+  background: #4caf50;
+  height: 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+
+/* Estilo do thumb do slider */
+.volume-container input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #388e3c;
+  cursor: pointer;
+  border: 2px solid #2e7d32;
+  margin-top: -6px;
+  transition: background-color 0.3s ease;
+}
+
+.volume-container input[type="range"]:hover::-webkit-slider-thumb {
+  background-color: #2e7d32;
+}
+
+.volume-container input[type="range"]::-webkit-slider-runnable-track {
+  background: #4caf50;
+  height: 6px;
+  border-radius: 4px;
+  border: none;
+}
+
+/* Firefox */
+.volume-container input[type="range"]::-moz-range-track {
+  background: #4caf50;
+  height: 6px;
+  border-radius: 4px;
+  border: none;
+}
+
+.volume-container input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #388e3c;
+  cursor: pointer;
+  border: 2px solid #2e7d32;
+  transition: background-color 0.3s ease;
+}
+
+.volume-container input[type="range"]:hover::-moz-range-thumb {
+  background-color: #2e7d32;
+}
